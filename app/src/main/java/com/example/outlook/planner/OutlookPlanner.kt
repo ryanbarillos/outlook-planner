@@ -3,39 +3,32 @@ package com.example.outlook.planner
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.outlook.planner.ui.OutlookPlannerBottomBar
-import com.example.outlook.planner.ui.OutlookPlannerCard
-import com.example.outlook.planner.ui.OutlookPlannerTopBar
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.outlook.planner.ui.pages.Home
+import com.example.outlook.planner.ui.pages.NewPlan
 import com.example.outlook.planner.ui.theme.OutlookPlannerTheme
 
-class MainActivity : ComponentActivity() {
+
+class OutlookPlanner : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -52,41 +45,59 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun yea(modifier: Modifier = Modifier): List<Unit> {
-    return listOf(
-        OutlookPlannerCard(modifier = Modifier.padding(16.dp)),
-        OutlookPlannerCard(modifier = Modifier.padding(16.dp)),
-        OutlookPlannerCard(modifier = Modifier.padding(16.dp)),
-        OutlookPlannerCard(modifier = Modifier.padding(16.dp))
-    )
-}
 
 @Composable
-fun OutlookPlannerApp(modifier: Modifier = Modifier) {
-    Scaffold (
-        topBar = {
-            OutlookPlannerTopBar()
-        },
-        floatingActionButton = {
-            OutlookPlannerBottomBar()
-        }
+fun OutlookPlannerApp(
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController()
+) {
+    NavHost(
+        navController = navController,
+        startDestination = OutlookPlannerScreen.Home.name,
+        modifier = modifier
     ) {
-        LazyColumn (modifier = Modifier.padding(it)) {
-            /**
-             * Weather Status
-             */
-            item {
-                OutlookPlannerWeatherStatus()
-            }
-            item {
-                Spacer(modifier = Modifier.height(48.dp))
-            }
-            items(1024) {
-                OutlookPlannerCard(modifier = Modifier.padding(16.dp))
-            }
+        composable(route = OutlookPlannerScreen.Home.name) {
+            Home(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(8.dp),
+                navController = navController
+            )
+        }
+        composable(route = OutlookPlannerScreen.NewPlan.name) {
+            val context = LocalContext.current
+            NewPlan(modifier = Modifier.fillMaxSize().padding(8.dp),
+                navController = navController)
         }
     }
+//    NewPlan(Modifier.padding(8.dp))
+//    Home(Modifier.padding(8.dp))
+
+
+
+//    Scaffold (
+//        topBar = {
+//            OutlookPlannerTopBar()
+//        },
+//        floatingActionButton = {
+//            OutlookPlannerFAB
+//        }
+//    ) {
+//        LazyColumn (modifier = Modifier.padding(it)) {
+//            /**
+//             * Weather Status
+//             */
+//            item {
+//                OutlookPlannerWeatherStatus()
+//            }
+//            item {
+//                Spacer(modifier = Modifier.height(48.dp))
+//            }
+//            items(1024) {
+//                OutlookPlannerCard(modifier = Modifier.padding(16.dp))
+//            }
+//        }
+//    }
 }
 
 @Composable
