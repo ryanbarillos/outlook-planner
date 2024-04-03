@@ -8,5 +8,5 @@
 
 
 #### References for the project (all open-source):
-[Breezy Weather](https://github.com/breezy-weather/breezy-weather "Link to the project on GitHub")
-[Quillpad](https://github.com/quillpad/quillpad "Link to the project on GitHub")
+- [Breezy Weather](https://github.com/breezy-weather/breezy-weather "Link to the project on GitHub")
+- [Quillpad](https://github.com/quillpad/quillpad "Link to the project on GitHub")
