@@ -1,8 +1,7 @@
-# outlook-planner
-
+# Outlook Planner
 ## A mobile app to plan ahead the next steps of the day. Written in Kotlin.
-### A college project for SODV3203
 
+#### A college project for SODV3203
 #### Developed by:
 - Ryan Barillos
 - Gurneet Baidwan
