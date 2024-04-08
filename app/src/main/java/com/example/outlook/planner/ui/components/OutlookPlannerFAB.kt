@@ -3,7 +3,6 @@ package com.example.outlook.planner.ui.components
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Create
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -22,7 +21,7 @@ fun OutlookPlannerFAB(
         /**
          * Current page is New PLan
          */
-        "NewPlan" -> {
+        "MakePlan" -> {
             ExtendedFloatingActionButton(
                 onClick = { navController.navigate(OutlookPlannerScreen.Home.name) },
                 icon = {
@@ -41,7 +40,7 @@ fun OutlookPlannerFAB(
          */
         else -> {
             ExtendedFloatingActionButton(
-                onClick = { navController.navigate(OutlookPlannerScreen.NewPlan.name) },
+                onClick = { navController.navigate(OutlookPlannerScreen.MakePlan.name) },
                 icon = {
                     Icon(
                         imageVector = Icons.Filled.Add,

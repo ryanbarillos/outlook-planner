@@ -1,4 +1,4 @@
-package com.example.outlook.planner.ui.pages
+package com.example.outlook.planner.ui.plan
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,22 +19,24 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.outlook.planner.models.Plan
 import com.example.outlook.planner.ui.components.OutlookPlannerFAB
 import com.example.outlook.planner.ui.design.ViewingArea
 
 @Composable
-fun NewPlan(
+fun MakePlan(
     modifier: Modifier = Modifier,
-    navController: NavHostController
+    navController: NavHostController,
+    plan: Plan = Plan(title = "", description = "")
 ) {
     // Immutable values
-    val pageCurrent = "NewPlan"
+    val pageCurrent = "MakePlan"
     val heightSpacer = 16.dp
     val textStyle = TextStyle(textAlign = TextAlign.Center)
 
 
-    var planTitle by rememberSaveable { mutableStateOf("") }
-    var planDescription by rememberSaveable { mutableStateOf("") }
+    var planTitle by rememberSaveable { mutableStateOf(plan.title) }
+    var planDescription by rememberSaveable { mutableStateOf(plan.description) }
     Scaffold(
         topBar = {
         },
@@ -84,13 +86,10 @@ fun NewPlan(
                 }
             )
             Spacer(modifier = Modifier.height(heightSpacer))
-
             /**
              * Date & Time
              * https://medium.com/@segunfrancis/how-to-create-material-date-and-time-pickers-in-android-18ecd246838b
              */
-
-
         }
     }
 }

@@ -25,7 +25,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.outlook.planner.ui.pages.Home
-import com.example.outlook.planner.ui.pages.NewPlan
+import com.example.outlook.planner.ui.plan.MakePlan
 import com.example.outlook.planner.ui.theme.OutlookPlannerTheme
 
 
@@ -66,9 +66,9 @@ fun OutlookPlannerApp(
                 navController = navController
             )
         }
-        composable(route = OutlookPlannerScreen.NewPlan.name) {
+        composable(route = OutlookPlannerScreen.MakePlan.name) {
             val context = LocalContext.current
-            NewPlan(
+            MakePlan(
                 modifier = Modifier.fillMaxSize().padding(8.dp),
                 navController = navController
             )
