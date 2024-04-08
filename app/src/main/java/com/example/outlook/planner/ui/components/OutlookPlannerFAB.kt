@@ -1,4 +1,4 @@
-package com.example.outlook.planner.ui
+package com.example.outlook.planner.ui.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.example.outlook.planner.OutlookPlannerScreen
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OutlookPlannerFAB(
     modifier: Modifier = Modifier,
@@ -25,7 +24,7 @@ fun OutlookPlannerFAB(
          */
         "NewPlan" -> {
             ExtendedFloatingActionButton(
-                onClick = { null },
+                onClick = { navController.navigate(OutlookPlannerScreen.Home.name) },
                 icon = {
                     Icon(
                         imageVector = Icons.Filled.Create,

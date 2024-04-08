@@ -67,4 +67,19 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    /**
+     * Manually-added dependencies
+     */
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose")
+    implementation("com.google.android.material:material")
+}
+
+dependencies {
+    constraints {
+        /**
+         * Manually-added dependencies minimum versions
+         */
+        implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+        implementation("com.google.android.material:material:1.11.0")
+    }
 }

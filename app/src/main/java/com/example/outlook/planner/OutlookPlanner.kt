@@ -3,6 +3,7 @@ package com.example.outlook.planner
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,6 +31,7 @@ import com.example.outlook.planner.ui.theme.OutlookPlannerTheme
 
 class OutlookPlanner : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             OutlookPlannerTheme {
@@ -66,8 +68,10 @@ fun OutlookPlannerApp(
         }
         composable(route = OutlookPlannerScreen.NewPlan.name) {
             val context = LocalContext.current
-            NewPlan(modifier = Modifier.fillMaxSize().padding(8.dp),
-                navController = navController)
+            NewPlan(
+                modifier = Modifier.fillMaxSize().padding(8.dp),
+                navController = navController
+            )
         }
     }
 //    NewPlan(Modifier.padding(8.dp))
@@ -130,7 +134,15 @@ fun OutlookPlannerWeatherStatus(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    OutlookPlannerTheme {
+    OutlookPlannerTheme(darkTheme = false) {
+        OutlookPlannerApp()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreviewDark() {
+    OutlookPlannerTheme(darkTheme = true) {
         OutlookPlannerApp()
     }
 }
