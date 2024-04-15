@@ -9,7 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import com.example.outlook.planner.OutlookPlannerScreen
+import com.example.outlook.planner.ui.navigation.OutlookPlannerScreen
 
 @Composable
 fun OutlookPlannerFAB(

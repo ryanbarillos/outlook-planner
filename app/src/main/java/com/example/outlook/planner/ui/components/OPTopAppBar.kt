@@ -2,6 +2,7 @@ package com.example.outlook.planner.ui.components
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -19,14 +20,14 @@ fun OutlookPlannerTopBar(modifier: Modifier = Modifier, pageCurrent: String = ""
         title = {
             Row {
                 when(pageCurrent) {
-                    "NewPlan" -> {
+                    "MakePlan" -> {
                         Button(
                             onClick = {
                                 null
                             }
                         ) {
                             Icon(
-                                imageVector = Icons.Filled.KeyboardArrowLeft,
+                                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft,
                                 contentDescription = "Go Back"
                             )
                         }

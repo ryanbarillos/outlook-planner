@@ -18,9 +18,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.example.outlook.planner.data.plan.PlanEntity
 
 @Composable
-fun OutlookPlannerCard(modifier: Modifier = Modifier) {
+fun OutlookPlannerCard(
+    modifier: Modifier = Modifier,
+    planEntity: PlanEntity = PlanEntity(
+        note = ""
+    )
+) {
     ElevatedCard(
         modifier = modifier,
         elevation = CardDefaults.cardElevation(
@@ -51,7 +57,7 @@ fun OutlookPlannerCard(modifier: Modifier = Modifier) {
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "Meet up with Noob Master 6",
+                        text = planEntity.note.ifEmpty { "Meet up with NoobMaster69" },
                         style = MaterialTheme.typography.bodyLarge,
                     )
                 }

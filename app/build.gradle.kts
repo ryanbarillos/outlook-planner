@@ -1,14 +1,16 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.devtools.ksp")
 }
 
 android {
-    namespace = "com.example.outlook.planner"
+    val appName = "com.example.outlook.planner"
+    namespace = appName
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.outlook.planner"
+        applicationId = appName
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -40,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.11"
     }
     packaging {
         resources {
@@ -50,7 +52,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -72,14 +73,34 @@ dependencies {
      */
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose")
     implementation("com.google.android.material:material")
+    // Room Database
+    implementation("androidx.room:room-runtime")
+    ksp("androidx.room:room-compiler")
+    implementation("androidx.room:room-ktx")
+    // Retrofit + Retrofit with Scalar Converter
+    implementation(libs.retrofit)
+    implementation(libs.converter.scalars)
+
 }
 
 dependencies {
+    /**
+     * Version variables
+     */
+    val versionViewModel = "2.7.0"
+    val versionMaterial = "1.11.0"
+    val versionRoom = "2.6.1"
     constraints {
         /**
          * Manually-added dependencies minimum versions
          */
-        implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
-        implementation("com.google.android.material:material:1.11.0")
+        implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$versionViewModel")
+        implementation("com.google.android.material:material:$versionMaterial")
+        implementation("androidx.room:room-runtime:$versionRoom")
+        ksp("androidx.room:room-compiler:$versionRoom")
+        implementation("androidx.room:room-ktx:$versionRoom")
+
+
+
     }
 }

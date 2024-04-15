@@ -11,13 +11,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 /**
  * According to Samsung's One UI Design Guidelines:
- * "[The viewing area is the] place [for] content that
+ * "(The viewing area is the) place (for) content that
  * doesn’t require any user interactions,such as a title."
  *
  * -- Pp. 6
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun ViewingArea(modifier: Modifier = Modifier, pageCurrent: String = "main") {
     val fontOfHeadline: TextUnit = 64.sp
+    val gap: Dp = 48.dp
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -32,9 +34,9 @@ fun ViewingArea(modifier: Modifier = Modifier, pageCurrent: String = "main") {
     ) {
         Spacer(modifier = Modifier.height(32.dp))
         when(pageCurrent) {
-            "NewPlan" -> {
+            "MakePlan" -> {
                 Text(
-                    text = "New Plan",
+                    text = "Make Plan",
                     style = MaterialTheme.typography.headlineLarge,
                     fontSize = fontOfHeadline,
                     fontWeight = FontWeight.Light
@@ -59,6 +61,6 @@ fun ViewingArea(modifier: Modifier = Modifier, pageCurrent: String = "main") {
                 )
             }
         }
-        Spacer(modifier = Modifier.height(48.dp))
+        Spacer(modifier = Modifier.height(gap))
     }
 }
