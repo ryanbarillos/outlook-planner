@@ -6,6 +6,7 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.outlook.planner.OutlookPlannerApplication
+import com.example.outlook.planner.ui.pages.home.HomeViewModel
 import com.example.outlook.planner.ui.pages.makeplan.MakePlanViewModel
 
 /**
@@ -18,6 +19,13 @@ object AppViewModelProvider {
          */
         initializer {
             MakePlanViewModel(outlookPlannerApplication().container.planRepository)
+        }
+
+        /**
+         * Initializer for [HomeViewModel]
+         */
+        initializer {
+            HomeViewModel()
         }
     }
 }
