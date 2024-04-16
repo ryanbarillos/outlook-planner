@@ -4,10 +4,12 @@ import com.example.outlook.planner.data.plan.PlanEntity
 import kotlinx.coroutines.flow.Flow
 
 class PlanRepositoryOffline(private val planDao: PlanDao) : PlanRepository {
-    override fun getAllPlans(): Flow<List<PlanEntity>> = planDao.getAllPlans()
+    override fun getPlanAll(): Flow<List<PlanEntity>> = planDao.getPlanAll()
 
-    override suspend fun upsertPlan(planEntity: PlanEntity) = planDao.upsert(planEntity)
+    override fun getPlanOne(id: Int): Flow<PlanEntity> = planDao.getPlanOne(id)
 
-    override suspend fun deletePlan(planEntity: PlanEntity) = planDao.delete(planEntity)
+    override suspend fun planUpsert(planEntity: PlanEntity) = planDao.upsert(planEntity)
+
+    override suspend fun planDelete(planEntity: PlanEntity) = planDao.delete(planEntity)
 
 }

@@ -3,6 +3,7 @@ package com.example.outlook.planner.ui.pages.makeplan
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.outlook.planner.data.plan.Plan
 import com.example.outlook.planner.data.plan.PlanEntity
@@ -11,12 +12,13 @@ import com.example.outlook.planner.data.plan.toEntity
 
 
 class MakePlanViewModel(
+    savedStateHandle: SavedStateHandle? = null,
     private val planRepository: PlanRepository
 ): ViewModel() {
     /**
      * Make Plan UI state
      */
-    var makePlanUiState: MakePlanUiState by mutableStateOf(MakePlanUiState())
+    var makePlanUiState by mutableStateOf(MakePlanUiState())
         private set
 
     /**
@@ -25,6 +27,17 @@ class MakePlanViewModel(
     fun initialize(planEntity: PlanEntity) {
         /** DO SOMETHING */
     }
+//    init {
+//        if (savedStateHandle != null) {
+//            viewModelScope.launch {
+//                makePlanUiState = planRepository.getPlanOne(planId)
+//                    .filterNotNull()
+//                    .first()
+//                    .toItemUiState(true)
+//            }
+//        }
+//    }
+
 
     /**
      * Check that no fields are empty
@@ -49,9 +62,9 @@ class MakePlanViewModel(
     /**
      * Insert + Update current plan
      */
-    suspend fun savePlan() {
+    suspend fun planUpsert() {
         if (validateInput()) {
-            planRepository.upsertPlan(makePlanUiState.plan.toEntity())
+            planRepository.planUpsert(makePlanUiState.plan.toEntity())
         }
     }
 }

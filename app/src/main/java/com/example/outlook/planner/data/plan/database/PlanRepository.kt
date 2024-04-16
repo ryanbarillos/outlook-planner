@@ -10,15 +10,20 @@ interface PlanRepository {
     /**
      * Retrieve all the Plans from the the given data source.
      */
-    fun getAllPlans(): Flow<List<PlanEntity>>
+    fun getPlanAll(): Flow<List<PlanEntity>>
+
+    /**
+     * Retrieve an item from the given data source that matches with the [id].
+     */
+    fun getPlanOne(id: Int): Flow<PlanEntity>
 
     /**
      * Insert + Update Plan in the data source
      */
-    suspend fun upsertPlan(planEntity: PlanEntity)
+    suspend fun planUpsert(planEntity: PlanEntity)
 
     /**
      * Delete Plan from the data source
      */
-    suspend fun deletePlan(planEntity: PlanEntity)
+    suspend fun planDelete(planEntity: PlanEntity)
 }

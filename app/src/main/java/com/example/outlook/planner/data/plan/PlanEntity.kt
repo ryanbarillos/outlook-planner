@@ -8,26 +8,11 @@ import androidx.room.PrimaryKey
  *
  * SAME AS [Plan], but designated for SQLite / RoomDB
  */
-const val PLAN_TABLE_NAME: String = "plans"
-
-/**
- * Database entities
- */
-@Entity(tableName = PLAN_TABLE_NAME)
+@Entity(tableName = PLAN_NAME_TABLE)
 data class PlanEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     val note: String,
     val timeToHappen: Long = 0,
     val dateToHappen: Long = 0
-)
-
-/**
- * Extension function to convert [PlanEntity] to [Plan]
- */
-fun PlanEntity.toPlan(): Plan = Plan(
-    id = id,
-    note = note,
-    timeToHappen = timeToHappen,
-    dateToHappen = dateToHappen
 )

@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
-import com.example.outlook.planner.data.plan.PLAN_TABLE_NAME
+import com.example.outlook.planner.data.plan.PLAN_NAME_TABLE
 import com.example.outlook.planner.data.plan.PlanEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -25,7 +25,12 @@ interface PlanDao {
     /**
      * Return ordered list of plans
      */
-    @Query("SELECT * FROM $PLAN_TABLE_NAME ORDER BY dateToHappen, timeToHappen ASC")
-    fun getAllPlans(): Flow<List<PlanEntity>>
+    @Query("SELECT * FROM $PLAN_NAME_TABLE ORDER BY dateToHappen, timeToHappen ASC")
+    fun getPlanAll(): Flow<List<PlanEntity>>
 
+    /**
+     * Return one plan by id
+     */
+    @Query("SELECT * from $PLAN_NAME_TABLE WHERE id = :id")
+    fun getPlanOne(id: Int): Flow<PlanEntity>
 }

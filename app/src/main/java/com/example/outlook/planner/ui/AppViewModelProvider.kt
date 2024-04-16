@@ -1,7 +1,7 @@
 package com.example.outlook.planner.ui
 
 import android.app.Application
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -18,14 +18,19 @@ object AppViewModelProvider {
          * Initializer for [MakePlanViewModel]
          */
         initializer {
-            MakePlanViewModel(outlookPlannerApplication().container.planRepository)
+            MakePlanViewModel(
+                planRepository = outlookPlannerApplication().container.planRepository
+            )
+//            MakePlanViewModel()
         }
 
         /**
          * Initializer for [HomeViewModel]
          */
         initializer {
-            HomeViewModel()
+            HomeViewModel(
+                planRepository = outlookPlannerApplication().container.planRepository
+            )
         }
     }
 }
@@ -34,4 +39,4 @@ object AppViewModelProvider {
  * [OutlookPlannerApplication].
  */
 fun CreationExtras.outlookPlannerApplication(): OutlookPlannerApplication =
-    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as OutlookPlannerApplication)
+    (this[AndroidViewModelFactory.APPLICATION_KEY] as OutlookPlannerApplication)

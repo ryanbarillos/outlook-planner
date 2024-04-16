@@ -2,6 +2,9 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.devtools.ksp")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -80,6 +83,10 @@ dependencies {
     // Retrofit + Retrofit with Scalar Converter
     implementation(libs.retrofit)
     implementation(libs.converter.scalars)
+    // Dependency Injection
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+
 
 }
 
@@ -99,8 +106,10 @@ dependencies {
         implementation("androidx.room:room-runtime:$versionRoom")
         ksp("androidx.room:room-compiler:$versionRoom")
         implementation("androidx.room:room-ktx:$versionRoom")
-
-
-
     }
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
