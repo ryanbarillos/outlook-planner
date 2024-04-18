@@ -227,7 +227,7 @@ fun MakePlanBody(
             )
             showPickerDate = !showPickerDate
         }
-        // Update the [displayDate] to show on UI screen
+        // Update the [displayDate] to show on UI screen display
         displayDate = LocalDate.of(plan.year, plan.month, plan.date)
     }
 }
