@@ -12,15 +12,15 @@ import kotlinx.coroutines.flow.stateIn
  * ViewModel to retrieve all items in the Room database.
  */
 class HomeViewModel(planRepository: PlanRepository): ViewModel() {
+    companion object {
+        private const val TIMEOUT_MILLIS = 5_000L
+    }
+
     val homeUiState: StateFlow<HomeUiState> =
-        planRepository.getPlanAll().map { HomeUiState(it) }
+        planRepository.getPlanAll().map { listPlanEntity -> HomeUiState(listPlanEntity) }
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
                 initialValue = HomeUiState()
             )
-
-    companion object {
-        private const val TIMEOUT_MILLIS = 5_000L
-    }
 }

@@ -3,7 +3,6 @@ package com.example.outlook.planner.ui.components
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -15,7 +14,7 @@ import androidx.compose.ui.Modifier
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OutlookPlannerTopBar(modifier: Modifier = Modifier, pageCurrent: String = "") {
+fun AppTopAppBar(modifier: Modifier = Modifier, pageCurrent: String = "") {
     TopAppBar(
         title = {
             Row {

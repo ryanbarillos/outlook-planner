@@ -25,7 +25,7 @@ interface PlanDao {
     /**
      * Return ordered list of plans
      */
-    @Query("SELECT * FROM $PLAN_NAME_TABLE ORDER BY dateToHappen, timeToHappen ASC")
+    @Query("SELECT * FROM $PLAN_NAME_TABLE ORDER BY COALESCE(year, month, date, hour, minute) ASC")
     fun getPlanAll(): Flow<List<PlanEntity>>
 
     /**

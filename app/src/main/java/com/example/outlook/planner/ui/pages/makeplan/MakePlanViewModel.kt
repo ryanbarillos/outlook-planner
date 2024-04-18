@@ -1,7 +1,9 @@
 package com.example.outlook.planner.ui.pages.makeplan
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -38,7 +40,6 @@ class MakePlanViewModel(
 //        }
 //    }
 
-
     /**
      * Check that no fields are empty
      */
@@ -57,6 +58,7 @@ class MakePlanViewModel(
             plan = planUpdated,
             fieldNotEmptyAll = validateInput(planUpdated)
         )
+//        Log.d("ADebugTag", "Value: ${makePlanUiState.plan.note}")
     }
 
     /**

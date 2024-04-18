@@ -12,8 +12,11 @@ const val PLAN_NAME_DB = "plans_database"
 fun PlanEntity.toPlan(): Plan = Plan(
     id = id,
     note = note,
-    timeToHappen = timeToHappen,
-    dateToHappen = dateToHappen
+    year = year,
+    month = month,
+    date = date,
+    hour = hour,
+    minute = minute,
 )
 
 /**
@@ -22,6 +25,9 @@ fun PlanEntity.toPlan(): Plan = Plan(
 fun Plan.toEntity(): PlanEntity = PlanEntity(
     id = id,
     note = note,
-    timeToHappen = timeToHappen,
-    dateToHappen = dateToHappen
+    year = year,
+    month = month,
+    date = date,
+    hour = hour,
+    minute = minute,
 )

@@ -6,6 +6,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.outlook.planner.ui.navigation.destination.DestinationHome
+import com.example.outlook.planner.ui.navigation.destination.DestinationMakePlan
 import com.example.outlook.planner.ui.pages.home.Home
 import com.example.outlook.planner.ui.pages.makeplan.MakePlan
 
@@ -19,26 +21,35 @@ fun OutlookPlannerNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = OutlookPlannerScreen.Home.name,
+        startDestination = DestinationHome.route,
         modifier = modifier
     ) {
         /**
          * Home page
          */
-        composable(route = OutlookPlannerScreen.Home.name) {
+        composable(route = DestinationHome.route) {
             Home(
                 modifier = modifier,
-                navController = navController
+                pageCurrent = DestinationHome.route,
+                navigateToPlanMake = {
+                    navController.navigate(DestinationMakePlan.route)
+                }
             )
         }
         /**
          * Make Plan page
          */
-        composable(route = OutlookPlannerScreen.MakePlan.name) {
-            val context = LocalContext.current
+        composable(route = DestinationMakePlan.route) {
             MakePlan(
                 modifier = modifier,
-                navController = navController
+                pageCurrent = DestinationMakePlan.route,
+                navigateBack = {
+                    navController.popBackStack()
+                },
+//                onNavigateUp = {
+//                    navController.navigateUp()
+//                }
+
             )
         }
     }

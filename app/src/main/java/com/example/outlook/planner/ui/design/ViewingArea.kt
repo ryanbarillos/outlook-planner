@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.outlook.planner.ui.navigation.destination.DestinationMakePlan
 
 /**
  * According to Samsung's One UI Design Guidelines:
@@ -34,7 +35,7 @@ fun ViewingArea(modifier: Modifier = Modifier, pageCurrent: String = "main") {
     ) {
         Spacer(modifier = Modifier.height(32.dp))
         when(pageCurrent) {
-            "MakePlan" -> {
+            DestinationMakePlan.route -> {
                 Text(
                     text = "Make Plan",
                     style = MaterialTheme.typography.headlineLarge,

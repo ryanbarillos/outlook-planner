@@ -30,7 +30,7 @@ object AppViewModelProvider {
         initializer {
             HomeViewModel(
                 planRepository = outlookPlannerApplication().container.planRepository
-            )
+                )
         }
     }
 }

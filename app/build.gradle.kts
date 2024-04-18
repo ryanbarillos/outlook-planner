@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.devtools.ksp")
     kotlin("kapt")
-    id("com.google.dagger.hilt.android")
 
 }
 
@@ -14,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = appName
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -83,9 +82,6 @@ dependencies {
     // Retrofit + Retrofit with Scalar Converter
     implementation(libs.retrofit)
     implementation(libs.converter.scalars)
-    // Dependency Injection
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
 
 
 }
@@ -107,9 +103,4 @@ dependencies {
         ksp("androidx.room:room-compiler:$versionRoom")
         implementation("androidx.room:room-ktx:$versionRoom")
     }
-}
-
-// Allow references to generated code
-kapt {
-    correctErrorTypes = true
 }

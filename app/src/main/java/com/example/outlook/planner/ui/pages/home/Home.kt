@@ -10,24 +10,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
-import com.example.outlook.planner.data.plan.PlanEntity
 import com.example.outlook.planner.ui.AppViewModelProvider
-import com.example.outlook.planner.ui.components.OutlookPlannerCard
-import com.example.outlook.planner.ui.components.OutlookPlannerFAB
+import com.example.outlook.planner.ui.components.AppFAB
+import com.example.outlook.planner.ui.components.PlanCard
 import com.example.outlook.planner.ui.design.ViewingArea
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Home(
     modifier: Modifier = Modifier,
-    planEntityLists: List<PlanEntity> = emptyList<PlanEntity>(),
-    navController: NavHostController,
+    navigateToPlanMake: () -> Unit ,
+    pageCurrent: String,
     viewModel: HomeViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
+    /**
+     * Immutable variables
+     */
     val homeUiState by viewModel.homeUiState.collectAsState()
+    val planList = homeUiState.planList
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
     Scaffold (
@@ -38,18 +41,19 @@ fun Home(
 //            ViewingArea()
         },
         floatingActionButton = {
-            OutlookPlannerFAB(navController = navController)
-        }
+            AppFAB(
+                pageCurrent = pageCurrent,
+                onClick = navigateToPlanMake
+            )
+        },
+        modifier = modifier,
     ) {
-        LazyColumn (modifier = Modifier.padding(it)) {
+        LazyColumn (modifier = modifier.padding(it)) {
             item {
                 ViewingArea()
             }
-            items(3) {
-                OutlookPlannerCard(modifier = Modifier.padding(16.dp))
-            }
-            items(planEntityLists) { plan ->
-                OutlookPlannerCard(
+            items(planList) { plan ->
+                PlanCard(
                     planEntity = plan,
                     modifier = Modifier.padding(16.dp)
                 )

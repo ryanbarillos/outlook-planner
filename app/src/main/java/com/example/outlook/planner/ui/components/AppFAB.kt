@@ -7,23 +7,23 @@ import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.example.outlook.planner.ui.navigation.OutlookPlannerScreen
+import com.example.outlook.planner.ui.navigation.destination.DestinationMakePlan
 
 @Composable
-fun OutlookPlannerFAB(
-    modifier: Modifier = Modifier,
-    pageCurrent: String = "",
-    navController: NavHostController
+fun AppFAB(
+    pageCurrent: String,
+    onClick: () -> Unit = {}
+
     ) {
     when(pageCurrent) {
         /**
          * Current page is New PLan
          */
-        "MakePlan" -> {
+        DestinationMakePlan.route -> {
             ExtendedFloatingActionButton(
-                onClick = { navController.navigate(OutlookPlannerScreen.Home.name) },
+                onClick = onClick,
                 icon = {
                     Icon(
                         imageVector = Icons.Filled.Create,
@@ -40,11 +40,11 @@ fun OutlookPlannerFAB(
          */
         else -> {
             ExtendedFloatingActionButton(
-                onClick = { navController.navigate(OutlookPlannerScreen.MakePlan.name) },
+                onClick = onClick,
                 icon = {
                     Icon(
                         imageVector = Icons.Filled.Add,
-                        contentDescription = "Add new plan button."
+                        contentDescription = "Add plan button."
                     )
                 },
                 text = {
