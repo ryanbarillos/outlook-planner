@@ -1,8 +1,7 @@
 package com.example.outlook.planner.ui.pages.makeplan
 
 import com.example.outlook.planner.data.plan.Plan
-import java.time.LocalDate
-import java.time.LocalTime
+import java.time.LocalDateTime
 
 /**
  * Data class that represents the plan UI state
@@ -16,11 +15,11 @@ import java.time.LocalTime
 data class MakePlanUiState(
     val plan: Plan = Plan(
         note = "",
-        year = LocalDate.now().year,
-        month = LocalDate.now().monthValue,
-        date = LocalDate.now().dayOfMonth,
-        hour = LocalTime.now().hour,
-        minute = LocalTime.now().minute,
+        year = LocalDateTime.now().year,
+        month = LocalDateTime.now().monthValue,
+        date = LocalDateTime.now().dayOfMonth,
+        hour = LocalDateTime.now().hour,
+        minute = LocalDateTime.now().minute,
         ),
     val fieldNotEmptyAll: Boolean = false
 )

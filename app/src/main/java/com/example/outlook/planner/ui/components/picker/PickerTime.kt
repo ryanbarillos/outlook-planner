@@ -9,6 +9,13 @@ class PickerTime(
     setClockFormat: Boolean
 ) {
     /**
+     * Reference(s):
+     * - https://medium.com/@segunfrancis/how-to-create-material-date-and-time-pickers-in-android-18ecd246838b
+     * - https://medium.com/@mdhsieh8/showing-materialtimepicker-and-materialdatepicker-7f417a6b978e
+     * - https://github.com/mdhsieh/example-material-picker
+     */
+
+    /**
      * Determine if system clock format is 12 hours or 24 hours
      */
     private val clockFormat = if (setClockFormat) {

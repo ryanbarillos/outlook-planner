@@ -1,8 +1,6 @@
 package com.example.outlook.planner.ui.components
 
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,13 +22,10 @@ import androidx.compose.ui.unit.dp
 import com.example.outlook.planner.data.plan.PlanEntity
 import java.time.LocalDate
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun PlanCard(
     modifier: Modifier = Modifier,
-    planEntity: PlanEntity = PlanEntity(
-        note = ""
-    )
+    planEntity: PlanEntity
 ) {
     /**
      * Immutable values

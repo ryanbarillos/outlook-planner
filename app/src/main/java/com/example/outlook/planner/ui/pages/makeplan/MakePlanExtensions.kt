@@ -14,3 +14,6 @@ fun getActivity(): AppCompatActivity {
     val context = LocalContext.current
     return context as AppCompatActivity
 }
+
+const val TYPE_TIME = "time"
+const val TYPE_DATE = "date"

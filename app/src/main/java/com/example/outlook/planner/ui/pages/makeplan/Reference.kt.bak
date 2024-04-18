@@ -1,0 +1,57 @@
+package com.example.outlook.planner.ui.pages.makeplan
+
+import android.app.DatePickerDialog
+import android.os.Bundle
+import android.widget.Button
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
+import androidx.compose.runtime.*
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.util.*
+
+@Composable
+fun MaterialDatePickerExample() {
+    var selectedDate by remember { mutableStateOf<LocalDateTime?>(null) }
+
+    Column(
+        modifier = androidx.compose.ui.Modifier.fillMaxSize()
+    ) {
+        Button(
+            onClick = {
+                showMaterialDatePicker(::onDateSet)
+            }
+        ) {
+            Text(text = "Select Date")
+        }
+
+        selectedDate?.let { date ->
+            Text(text = "Selected Date: $date")
+        }
+    }
+}
+
+fun showMaterialDatePicker(onDateSet: (year: Int, month: Int, day: Int) -> Unit) {
+    val calendar = Calendar.getInstance()
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH)
+    val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+    MaterialDatePicker.Builder.datePicker()
+        .setSelection(year, month, day)
+        .build()
+        .apply {
+            addOnPositiveButtonClickListener {
+                onDateSet(year, month, day)
+            }
+        }
+        .show((context as ComponentActivity).supportFragmentManager, null)
+}
+
+fun onDateSet(year: Int, month: Int, day: Int) {
+    val selectedDate = LocalDateTime.of(year, month + 1, day, 0, 0)
+    // Use selectedDate as needed
+}
