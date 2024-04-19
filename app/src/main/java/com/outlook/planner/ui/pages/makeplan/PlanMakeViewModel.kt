@@ -74,10 +74,4 @@ class PlanMakeViewModel(
     suspend fun planUpsert() {
         if (validateInput()) planRepository.planUpsert(planMakeUiState.plan.toEntity())
     }
-    /**
-     * Delete current plan
-     */
-    suspend fun planDelete() {
-        planRepository.planDelete(planMakeUiState.plan.toEntity())
-    }
 }
