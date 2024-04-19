@@ -1,5 +1,7 @@
 package com.outlook.planner.data.plan
 
+import com.outlook.planner.ui.pages.makeplan.PlanMakeUiState
+
 /**
  * Variables to use
  */
@@ -17,6 +19,15 @@ fun PlanEntity.toPlan(): Plan = Plan(
     date = date,
     hour = hour,
     minute = minute,
+)
+
+/**
+ * Extension function to convert [PlanEntity] to [PlanMakeUiState]
+ * Initially make it false so that changes are a must to complete
+ */
+fun PlanEntity.toMakePlanUiState(fieldNotEmptyAtAll: Boolean = false): PlanMakeUiState = PlanMakeUiState(
+    plan = this.toPlan(),
+    fieldNotEmptyAll = fieldNotEmptyAtAll
 )
 
 /**
