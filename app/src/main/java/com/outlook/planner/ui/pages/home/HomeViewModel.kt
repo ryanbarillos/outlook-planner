@@ -2,6 +2,7 @@ package com.outlook.planner.ui.pages.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.outlook.planner.data.plan.PlanEntity
 import com.outlook.planner.data.plan.database.PlanRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -11,7 +12,7 @@ import kotlinx.coroutines.flow.stateIn
 /**
  * ViewModel to retrieve all items in the Room database.
  */
-class HomeViewModel(planRepository: PlanRepository): ViewModel() {
+class HomeViewModel(val planRepository: PlanRepository): ViewModel() {
     companion object {
         private const val TIMEOUT_MILLIS = 5_000L
     }
@@ -23,4 +24,10 @@ class HomeViewModel(planRepository: PlanRepository): ViewModel() {
                 started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
                 initialValue = HomeUiState()
             )
+    /**
+     * Delete current plan
+     */
+    suspend fun planDelete(planEntity: PlanEntity) {
+        planRepository.planDelete(planEntity)
+    }
 }
