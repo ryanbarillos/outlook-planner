@@ -1,9 +1,11 @@
 <resources>
 
     <string name="name_app">Outlook Planner</string>
-    <string name="name_make_plan">Make Plan</string>
+    <string name="name_plan_make">Make Plan</string>
+    <string name="name_plan_edit">Edit Plan</string>
     <string name="route_home">home</string>
-    <string name="route_make_plan">make_plan</string>
+    <string name="route_plan_make">make_plan</string>
+    <string name="route_plan_edit">edit_plan</string>
     <string name="table_name_plans">plans</string>
     <string name="set_time">Set a Time</string>
     <string name="set_date">Set a Date</string>

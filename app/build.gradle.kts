@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    val appName = "com.example.outlook.planner"
+    val appName = "com.outlook.planner"
     namespace = appName
     compileSdk = 34
 
