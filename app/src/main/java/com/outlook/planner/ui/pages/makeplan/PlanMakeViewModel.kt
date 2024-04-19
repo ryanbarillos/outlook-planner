@@ -7,21 +7,22 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.outlook.planner.data.plan.Plan
-import com.outlook.planner.data.plan.PlanEntity
 import com.outlook.planner.data.plan.database.PlanRepository
 import com.outlook.planner.data.plan.toEntity
 import com.outlook.planner.data.plan.toMakePlanUiState
-import com.outlook.planner.data.plan.toPlan
+import com.outlook.planner.ui.navigation.destination.DestinationPlanEdit
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 
-class PlanMakeViewModel(private val planRepository: PlanRepository): ViewModel() {
+class PlanMakeViewModel(
+    savedStateHandle: SavedStateHandle,
+    private val planRepository: PlanRepository,
+): ViewModel() {
     /**
      * Make Plan UI state
      */
-    private val planId: Int = 5
     var planMakeUiState by mutableStateOf(PlanMakeUiState())
         private set
 
@@ -29,12 +30,21 @@ class PlanMakeViewModel(private val planRepository: PlanRepository): ViewModel()
      * Initialize private values in presence of an existing Plan object
      */
     init {
-        viewModelScope.launch {
-            planMakeUiState = planRepository
-                .getPlanOne(planId)
-                .filterNotNull()
-                .first()
-                .toMakePlanUiState()
+        try {
+            val planId: Int = checkNotNull(savedStateHandle[DestinationPlanEdit.PLAN_ID])
+            viewModelScope.launch {
+                planMakeUiState = planRepository
+                    .getPlanOne(planId)
+                    .filterNotNull()
+                    .first()
+                    .toMakePlanUiState()
+            }
+        } catch(_: Exception) {
+            /**
+             * No Plan ID supplied
+             *
+             * Assume user is making plan, or plan is missing in database
+             */
         }
     }
 
@@ -56,15 +66,12 @@ class PlanMakeViewModel(private val planRepository: PlanRepository): ViewModel()
             plan = planUpdated,
             fieldNotEmptyAll = validateInput(planUpdated)
         )
-//        Log.d("ADebugTag", "Value: ${makePlanUiState.plan.note}")
     }
 
     /**
      * Insert + Update current plan
      */
     suspend fun planUpsert() {
-        if (validateInput()) {
-            planRepository.planUpsert(planMakeUiState.plan.toEntity())
-        }
+        if (validateInput()) planRepository.planUpsert(planMakeUiState.plan.toEntity())
     }
 }

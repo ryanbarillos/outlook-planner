@@ -1,5 +1,6 @@
 package com.outlook.planner.ui.navigation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -34,7 +35,7 @@ fun OutlookPlannerNavHost(
                 modifier = modifier,
                 pageCurrent = DestinationHome.route,
                 navigateToPlanMake = { navController.navigate(route = DestinationPlanMake.route) },
-                navigateToPlanEdit = {id -> navController.navigate(route = "${DestinationPlanMake.route}/${id}") }
+                navigateToPlanEdit = { planId -> navController.navigate(route = "${DestinationPlanEdit.route}/${planId}") }
             )
         }
         /**
@@ -43,7 +44,7 @@ fun OutlookPlannerNavHost(
         composable(route = DestinationPlanMake.route) {
             PlanMake(
                 modifier = modifier,
-                pageCurrent = DestinationPlanMake.route,
+                pageCurrent = DestinationPlanEdit.route,
                 navigateBack = {
                     navController.popBackStack()
                 },
@@ -55,16 +56,15 @@ fun OutlookPlannerNavHost(
          */
         composable(
             route = DestinationPlanEdit.routeWithId,
-            arguments = listOf(navArgument(DestinationPlanEdit.PLAN_ID) {
+            arguments = listOf(navArgument(name = DestinationPlanEdit.PLAN_ID) {
                 type = NavType.IntType
             })
         ) {
+            Log.d("Args", it.arguments?.getInt(DestinationPlanEdit.PLAN_ID).toString())
             PlanMake(
                 modifier = modifier,
-                pageCurrent = DestinationPlanMake.route,
-                navigateBack = {
-                    navController.popBackStack()
-                }
+                pageCurrent = DestinationPlanEdit.route,
+                navigateBack = { navController.popBackStack() },
             )
         }
     }

@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.outlook.planner.ui.navigation.destination.DestinationPlanEdit
 import com.outlook.planner.ui.navigation.destination.DestinationPlanMake
 
 /**
@@ -38,6 +39,14 @@ fun ViewingArea(modifier: Modifier = Modifier, pageCurrent: String = "main") {
             DestinationPlanMake.route -> {
                 Text(
                     text = "Make Plan",
+                    style = MaterialTheme.typography.headlineLarge,
+                    fontSize = fontOfHeadline,
+                    fontWeight = FontWeight.Light
+                )
+            }
+            DestinationPlanEdit.route -> {
+                Text(
+                    text = "Edit Plan",
                     style = MaterialTheme.typography.headlineLarge,
                     fontSize = fontOfHeadline,
                     fontWeight = FontWeight.Light

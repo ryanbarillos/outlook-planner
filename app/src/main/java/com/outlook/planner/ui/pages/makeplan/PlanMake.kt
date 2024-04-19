@@ -54,9 +54,7 @@ fun PlanMake(
     modifier: Modifier = Modifier,
     pageCurrent: String,
     navigateBack: () -> Unit,
-    canNavigateBack: Boolean = true,
     context: Context = LocalContext.current,
-    plan: Plan? = null,
     viewModel: PlanMakeViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
     /**

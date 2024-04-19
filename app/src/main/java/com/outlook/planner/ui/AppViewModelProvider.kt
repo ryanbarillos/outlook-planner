@@ -2,6 +2,7 @@ package com.outlook.planner.ui
 
 import android.app.Application
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -19,18 +20,16 @@ object AppViewModelProvider {
          */
         initializer {
             PlanMakeViewModel(
-                planRepository = outlookPlannerApplication().container.planRepository
+                planRepository = outlookPlannerApplication().container.planRepository,
+                savedStateHandle = this.createSavedStateHandle(),
             )
-//            MakePlanViewModel()
         }
 
         /**
          * Initializer for [HomeViewModel]
          */
         initializer {
-            HomeViewModel(
-                planRepository = outlookPlannerApplication().container.planRepository
-                )
+            HomeViewModel(planRepository = outlookPlannerApplication().container.planRepository)
         }
     }
 }

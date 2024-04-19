@@ -44,10 +44,7 @@ fun Home(
             item {
                 ViewingArea()
             }
-            items(
-                items = planList,
-                key = { planEntity -> planEntity.id }
-            ) { planEntity ->
+            items(items = planList) { planEntity ->
                 PlanCard(
                     planEntity = planEntity,
                     modifier = modifier
