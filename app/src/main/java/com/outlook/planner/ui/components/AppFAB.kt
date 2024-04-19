@@ -10,7 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.outlook.planner.R
-import com.outlook.planner.ui.navigation.destination.DestinationPlanEdit
 import com.outlook.planner.ui.navigation.destination.DestinationPlanMake
 
 @Composable
@@ -40,7 +39,7 @@ fun AppFAB(
         /**
          * Current page is Edit PLan
          */
-        DestinationPlanEdit.route -> {
+        DestinationPlanMake.routeWithId -> {
             ExtendedFloatingActionButton(
                 onClick = onClick,
                 icon = {

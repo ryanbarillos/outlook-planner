@@ -9,7 +9,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.outlook.planner.ui.navigation.destination.DestinationHome
-import com.outlook.planner.ui.navigation.destination.DestinationPlanEdit
 import com.outlook.planner.ui.navigation.destination.DestinationPlanMake
 import com.outlook.planner.ui.pages.home.Home
 import com.outlook.planner.ui.pages.makeplan.PlanMake
@@ -35,8 +34,7 @@ fun OutlookPlannerNavHost(
                 modifier = modifier,
                 pageCurrent = DestinationHome.route,
                 navigateToPlanMake = { navController.navigate(route = DestinationPlanMake.route) },
-                navigateToPlanEdit = { planId -> navController.navigate(route = "${DestinationPlanEdit.route}/{$planId}") }
-//                navigateToPlanEdit = {planId -> Log.d("DebuggerTracker", "${DestinationPlanEdit.route}/{$planId}")}
+                navigateToPlanEdit = { planId -> navController.navigate(route = "${DestinationPlanMake.route}/$planId") }
             )
         }
         /**
@@ -56,15 +54,15 @@ fun OutlookPlannerNavHost(
          * (AKA Make Plan page with a Plan object passed)
          */
         composable(
-            route = DestinationPlanEdit.routeWithId,
-            arguments = listOf(navArgument(name = DestinationPlanEdit.PLAN_ID) {
+            route = DestinationPlanMake.routeWithId,
+            arguments = listOf(navArgument(name = DestinationPlanMake.PLAN_ID) {
                 type = NavType.IntType
             })
         ) {
-            Log.d("Args", it.arguments?.getInt(DestinationPlanEdit.PLAN_ID).toString())
+            Log.d("Args", it.arguments?.getInt(DestinationPlanMake.PLAN_ID).toString())
             PlanMake(
                 modifier = modifier,
-                pageCurrent = DestinationPlanEdit.route,
+                pageCurrent = DestinationPlanMake.routeWithId,
                 navigateBack = { navController.popBackStack() },
             )
         }

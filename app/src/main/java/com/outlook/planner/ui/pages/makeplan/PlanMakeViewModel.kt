@@ -10,7 +10,7 @@ import com.outlook.planner.data.plan.Plan
 import com.outlook.planner.data.plan.database.PlanRepository
 import com.outlook.planner.data.plan.toEntity
 import com.outlook.planner.data.plan.toMakePlanUiState
-import com.outlook.planner.ui.navigation.destination.DestinationPlanEdit
+import com.outlook.planner.ui.navigation.destination.DestinationPlanMake
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -31,7 +31,7 @@ class PlanMakeViewModel(
      */
     init {
         try {
-            val planId: Int = checkNotNull(savedStateHandle[DestinationPlanEdit.PLAN_ID])
+            val planId: Int = checkNotNull(savedStateHandle[DestinationPlanMake.PLAN_ID])
             viewModelScope.launch {
                 planMakeUiState = planRepository
                     .getPlanOne(planId)
@@ -73,5 +73,11 @@ class PlanMakeViewModel(
      */
     suspend fun planUpsert() {
         if (validateInput()) planRepository.planUpsert(planMakeUiState.plan.toEntity())
+    }
+    /**
+     * Delete current plan
+     */
+    suspend fun planDelete() {
+        planRepository.planDelete(planMakeUiState.plan.toEntity())
     }
 }

@@ -15,7 +15,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.outlook.planner.ui.navigation.destination.DestinationPlanEdit
 import com.outlook.planner.ui.navigation.destination.DestinationPlanMake
 
 /**
@@ -26,7 +25,7 @@ import com.outlook.planner.ui.navigation.destination.DestinationPlanMake
  * -- Pp. 6
  */
 @Composable
-fun ViewingArea(modifier: Modifier = Modifier, pageCurrent: String = "main") {
+fun ViewingArea(pageCurrent: String = "main") {
     val fontOfHeadline: TextUnit = 64.sp
     val gap: Dp = 48.dp
     Column(
@@ -44,7 +43,7 @@ fun ViewingArea(modifier: Modifier = Modifier, pageCurrent: String = "main") {
                     fontWeight = FontWeight.Light
                 )
             }
-            DestinationPlanEdit.route -> {
+            DestinationPlanMake.routeWithId -> {
                 Text(
                     text = "Edit Plan",
                     style = MaterialTheme.typography.headlineLarge,
