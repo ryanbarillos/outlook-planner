@@ -17,10 +17,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 
-class PlanMakeViewModel(
-    savedStateHandle: SavedStateHandle? = null,
-    private val planRepository: PlanRepository
-): ViewModel() {
+class PlanMakeViewModel(private val planRepository: PlanRepository): ViewModel() {
     /**
      * Make Plan UI state
      */
