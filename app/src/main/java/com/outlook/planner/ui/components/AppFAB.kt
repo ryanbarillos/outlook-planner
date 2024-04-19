@@ -2,7 +2,7 @@ package com.outlook.planner.ui.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Create
+import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
@@ -28,7 +28,7 @@ fun AppFAB(
                 onClick = onClick,
                 icon = {
                     Icon(
-                        imageVector = Icons.Filled.Create,
+                        imageVector = Icons.Filled.AddCircle,
                         contentDescription = "Create plan button."
                     )
                 },

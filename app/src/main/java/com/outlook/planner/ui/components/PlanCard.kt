@@ -43,11 +43,11 @@ fun PlanCard(
     val timeOfPlan: LocalTime = LocalTime.of(planEntity.hour, planEntity.minute)
     val dateTimeOfPlan: LocalDateTime = LocalDateTime.of(dateOfPlan, timeOfPlan)
 
-    /**
-     * Check if it happened yesterday, today or tomorrow
-     */
-    val timeToAddress: String = when(dateOfPlan) {
 
+    val timeToAddress: String = when(dateOfPlan) {
+        /**
+         * Check if it happened yesterday, today or tomorrow
+         */
         LocalDate.now().minusDays(1) -> "Yesterday"
         LocalDate.now() -> "Today"
         LocalDate.now().plusDays(1) -> "Tomorrow"

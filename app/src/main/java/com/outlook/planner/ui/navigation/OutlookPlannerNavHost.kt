@@ -35,7 +35,8 @@ fun OutlookPlannerNavHost(
                 modifier = modifier,
                 pageCurrent = DestinationHome.route,
                 navigateToPlanMake = { navController.navigate(route = DestinationPlanMake.route) },
-                navigateToPlanEdit = { planId -> navController.navigate(route = "${DestinationPlanEdit.route}/${planId}") }
+                navigateToPlanEdit = { planId -> navController.navigate(route = "${DestinationPlanEdit.route}/{$planId}") }
+//                navigateToPlanEdit = {planId -> Log.d("DebuggerTracker", "${DestinationPlanEdit.route}/{$planId}")}
             )
         }
         /**
@@ -44,7 +45,7 @@ fun OutlookPlannerNavHost(
         composable(route = DestinationPlanMake.route) {
             PlanMake(
                 modifier = modifier,
-                pageCurrent = DestinationPlanEdit.route,
+                pageCurrent = DestinationPlanMake.route,
                 navigateBack = {
                     navController.popBackStack()
                 },
